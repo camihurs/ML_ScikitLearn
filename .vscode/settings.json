@@ -9,6 +9,7 @@
         "matplotlib",
         "predictoras",
         "pyplot",
+        "Scikit",
         "sklearn",
         "solucionador"
     ]
