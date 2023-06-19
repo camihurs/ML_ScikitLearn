@@ -4,6 +4,7 @@ import sklearn
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso
 from sklearn.linear_model import Ridge
+from sklearn.linear_model import ElasticNet
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
@@ -29,6 +30,10 @@ if __name__ == "__main__":
     RidgeModel = Ridge(alpha=1).fit(X_train,y_train)
     y_predict_Ridge = RidgeModel.predict(X_test)
 
+    #El alpha es el que controla si la regularización ElasticNet se parece más a Ridge o a Lasso
+    ElasNet = ElasticNet(random_state=0, alpha=0.02).fit(X_train, y_train)
+    y_predict_elasNet = ElasNet.predict(X_test)
+
     #Para este ejemplo elegimos calcular nuestra pérdida a través de error cuadrático medio
     #Hay diferentes métricas tanto para clasificación como para regresión que nos pueden dar información
     #diferente sobre los cálculos que estamos realizando
@@ -38,10 +43,17 @@ if __name__ == "__main__":
     print("Linear Loss: ", linear_loss)
 
     Lasso_loss = mean_squared_error(y_test,y_predict_lasso)
-    print("Linear Loss: ", Lasso_loss)
+    print("Lasso Loss: ", Lasso_loss)
 
     Ridge_loss = mean_squared_error(y_test,y_predict_Ridge)
-    print("Linear Loss: ", Ridge_loss)
+    print("Ridge Loss: ", Ridge_loss)
+
+    ElasNet_loss = mean_squared_error(y_test,y_predict_elasNet)
+    print("ElasticNet Loss: ", ElasNet_loss)
+
+    print("="*32)
+    print("Coeficientes Lineal: ")
+    print(LinearModel.coef_)
 
     print("="*32)
     print("Coeficientes Lasso: ")
@@ -50,3 +62,7 @@ if __name__ == "__main__":
     print("="*32)
     print("Coeficientes Ridge: ")
     print(RidgeModel.coef_)
+
+    print("="*32)
+    print("Coeficientes ElasticNet: ")
+    print(ElasNet.coef_)
