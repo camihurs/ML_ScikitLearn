@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print(dt_features.head())
 
     #Para aplicar el PCA necesitamos siempre normalizar los datos
-    #Vamos a usar el StandarScaler
+    #Vamos a usar el StandardScaler
     dt_features = StandardScaler().fit_transform(dt_features)
 
     #Dividimos el conjunto de datos en entrenamiento y prueba
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     print("Score con PCA = ", logistic.score(dt_test, y_test))
 
 
-    #Ahora solo hacemos lo mismo con iPCA--------------------
+    #Ahora hacemos lo mismo con iPCA--------------------
     dt_train = ipca.transform(X_train)
     dt_test = ipca.transform(X_test)
 
