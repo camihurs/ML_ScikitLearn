@@ -2,7 +2,9 @@
     "cSpell.language": "en,es",
     "cSpell.words": [
         "astype",
+        "boxplot",
         "dimensionalidad",
+        "figsize",
         "ipca",
         "kpca",
         "lbfgs",
@@ -10,6 +12,7 @@
         "predictoras",
         "pyplot",
         "Scikit",
+        "seaborn",
         "sklearn",
         "solucionador"
     ]

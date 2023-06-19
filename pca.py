@@ -1,6 +1,7 @@
 import pandas as pd
 import sklearn
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 #Vamos a hacer una comparación entre ambos algoritmos
 from sklearn.decomposition import PCA
@@ -20,6 +21,17 @@ if __name__ == "__main__":
     dt_heart=pd.read_csv('./data/heart.csv')
 
     print(dt_heart.head())
+
+    #Separamos las variables numéricas para hacer un boxplot
+    num_features = dt_heart[['age', 'trestbps', 'chol', 'thalach', 'oldpeak']]
+
+    plt.figure(figsize=(10,7))
+    num_features.boxplot(grid=False)
+
+    #Se hace el boxplot usando la librería seaborn y comparando el colesterol para hombres y mujeres
+    plt.figure()
+    sns.boxplot(x=dt_heart.sex, y=dt_heart.chol, hue = dt_heart.target)
+
 
     #Seleccionamos las variables predictoras y la variable de salida
     dt_features = dt_heart.drop(["target"],axis=1)
@@ -55,6 +67,7 @@ if __name__ == "__main__":
     ipca.fit(X_train)
 
     #Ahora vamos a medir la varianza de los componentes extraídos; lo vemos gráficamente
+    plt.figure()
     plt.plot(range(len(pca.explained_variance_)),pca.explained_variance_ratio_, label="PCA")
 
     #En la gráfica que obtenemos, vemos tres componentes (0, 1 y 2) en el eje horizontal, y en el eje vertical
