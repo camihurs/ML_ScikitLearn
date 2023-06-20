@@ -16,5 +16,6 @@
         "seaborn",
         "sklearn",
         "solucionador"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }
