@@ -1,15 +1,23 @@
 import pandas as pd
 
-from sklearn.neighbors import  KNeighborsClassifier
-from sklearn.ensemble import BaggingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import SGDClassifier
 
-from sklearn.model_selection import train_test_split
+from sklearn.neighbors import  KNeighborsClassifier
+
+from sklearn.ensemble import BaggingClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.metrics import  accuracy_score
 
 from sklearn.svm import LinearSVC
 from sklearn.svm import SVC
-from sklearn.linear_model import SGDClassifier
+
 from sklearn.tree import DecisionTreeClassifier
+
+import warnings
+warnings.filterwarnings("ignore")
 
 if __name__ == "__main__":
     path = './data/heart.csv'
@@ -39,12 +47,15 @@ if __name__ == "__main__":
     #print('')
 
     classifier = {
+        'LogisticRegression' : LogisticRegression(),
         'KNeighbors': KNeighborsClassifier(),
         'LinearSCV': LinearSVC(),
         'SVC': SVC(),
         'SGDC': SGDClassifier(),
-        'DecisionTree': DecisionTreeClassifier()
-    }
+        'DecisionTree': DecisionTreeClassifier(),
+        'DecisionTreeClf' : DecisionTreeClassifier(),
+        'RandomTreeForest' : RandomForestClassifier(random_state=0)
+                }
 
     for name, estimator in classifier.items():
         bag_class = BaggingClassifier(estimator=estimator, n_estimators=50).fit(x_train, y_train)
@@ -52,3 +63,8 @@ if __name__ == "__main__":
 
         print('Accuracy Bagging with {}:'.format(name), accuracy_score(bag_pred, y_test))
         print('')
+
+    for name, estimator in classifier.items():
+        scores = cross_val_score(estimator, x, y, cv=50)
+        print('='*64)
+        print(f'Cross val score with {name} : {round(scores.mean(), 2)} accuracy with a standard deviation of {round(scores.std(), 2)}')
