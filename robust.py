@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 
 #Lo que estamos haciendo en este script es predecir score de manera lineal con algoritmos que manipulan
-#internamente los valores atípitoc, como SVR, RANSAC y HUBER
+#internamente los valores atípicos, como SVR, RANSAC y HUBER
 
 if __name__ == "__main__":
     dataset = pd.read_csv("./data/felicidad_corrupt.csv")
