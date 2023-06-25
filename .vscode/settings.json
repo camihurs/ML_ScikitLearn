@@ -5,6 +5,7 @@
         "boxplot",
         "dimensionalidad",
         "figsize",
+        "iloc",
         "ipca",
         "kpca",
         "lbfgs",
