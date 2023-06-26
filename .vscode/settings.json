@@ -7,6 +7,7 @@
         "figsize",
         "iloc",
         "ipca",
+        "joblib",
         "kpca",
         "lbfgs",
         "matplotlib",

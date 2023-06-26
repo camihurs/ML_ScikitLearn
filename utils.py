@@ -1,5 +1,6 @@
 #Acá vamos a colocar los métodos que vamos a reutilizar constantemente, como el escalamiento por ejemplo.
 import pandas as pd
+import joblib
 
 class Utils:
     def load_from_csv(self, path):
@@ -14,4 +15,5 @@ class Utils:
         return X,y
 
     def model_export(self, clf, score):
-        pass
+        print(score)
+        joblib.dump(clf,'./models/best_model.pkl')
